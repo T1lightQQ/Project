@@ -6,7 +6,23 @@ int main()
 	setlocale(LC_ALL, "ru");
 	srand(time(NULL));
 
-	int mass[10]{};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*int mass[10]{};
 	for (int i = 0; i < 10; i++)
 	{
 		mass[i] = rand() % 29 - 15;
@@ -27,17 +43,7 @@ int main()
 		{
 			std::cout << mass[i] << " ";
 		}
-	}
-
-
-
-
-
-
-
-
-
-
+	}*/
 
 	/*int summ = 0;
 	int massiv[6]{};
