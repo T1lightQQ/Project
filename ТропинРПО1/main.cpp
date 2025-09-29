@@ -9,27 +9,39 @@ int main()
 	SetConsoleOutputCP(1251);
 	srand(time(NULL));
 
-	int arr[3][5]; int summ = 0; int kolonki = 0, stroki = 0;
+
+
+
+
+
+
+
+
+
+
+
+	/*int arr[3][5]; int summ = 0; int kolonki = 0, stroki = 0, pop = 0;
+	std::cout << "\n\n\n";
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 5; j++)
 		{
-			arr[i][j] = rand() % 10;
+				arr[i][j] = rand() % 150;
 		}
 	}
-	
+
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 5; j++)
 		{
-			std::cout << arr[i][j] << "\t";
+			std::cout << "\t" << arr[i][j] << "\t";
 			summ = arr[i][j] + summ;
 		}
 		kolonki = kolonki + summ;
 		std::cout << "|\t" << summ << "\n";
 		summ = 0;
 	}
-	std::cout << "----------------------------------------------------\n";
+	std::cout << "\t" << "-------------------------------------------------------------------------------------\n";
 	summ = 0;
 	for (int j = 0; j < 5; j++)
 	{
@@ -37,26 +49,12 @@ int main()
 		{
 			summ = arr[i][j] + summ;
 		}
-		std::cout << summ << "\t";
+		std::cout << "\t" << summ << "\t";
 		stroki = stroki + summ;
 		summ = 0;
 	}
-	summ = 0;
-	std::cout << "|\t" << kolonki + stroki << "\n";
-	system("pause");
-
-
-
-
-
-
-
-
-
-
-
-
-
+	std::cout << "|\t" << kolonki << "\n\n";
+	system("pause");*/
 
 	/*int mass[10]{};
 	for (int i = 0; i < 10; i++)
