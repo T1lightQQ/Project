@@ -33,7 +33,7 @@ int main()
 	{
 		if (mass[i] >= 0)
 		{
-			std::cout << mass[i] << " hhh";
+			std::cout << mass[i] << " ";
 		}
 	}
 	std::cout << "\n";
