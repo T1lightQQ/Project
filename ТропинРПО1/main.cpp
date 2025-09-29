@@ -2,6 +2,21 @@
 #include <cstdlib>
 #include <Windows.h>
 
+/*
+тип_возврата имя_функции(аргументы)
+{
+	Тело
+}
+*/
+
+
+void PrintHelloWorld()
+{
+	std::cout << "Hello world";
+}
+
+
+
 int main()
 {
 	//setlocale(LC_ALL, "ru");
@@ -9,7 +24,7 @@ int main()
 	SetConsoleOutputCP(1251);
 	srand(time(NULL));
 
-
+	PrintHelloWorld();
 
 
 
