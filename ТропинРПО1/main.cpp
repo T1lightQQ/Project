@@ -1,13 +1,49 @@
 #include <iostream>
 #include <cstdlib>
+#include <Windows.h>
 
 int main()
 {
-	setlocale(LC_ALL, "ru");
+	//setlocale(LC_ALL, "ru");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	srand(time(NULL));
 
-
-
+	int arr[3][5]; int summ = 0; int kolonki = 0, stroki = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			arr[i][j] = rand() % 10;
+		}
+	}
+	
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			std::cout << arr[i][j] << "\t";
+			summ = arr[i][j] + summ;
+		}
+		kolonki = kolonki + summ;
+		std::cout << "|\t" << summ << "\n";
+		summ = 0;
+	}
+	std::cout << "----------------------------------------------------\n";
+	summ = 0;
+	for (int j = 0; j < 5; j++)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			summ = arr[i][j] + summ;
+		}
+		std::cout << summ << "\t";
+		stroki = stroki + summ;
+		summ = 0;
+	}
+	summ = 0;
+	std::cout << "|\t" << kolonki + stroki << "\n";
+	system("pause");
 
 
 
