@@ -2,18 +2,25 @@
 #include <cstdlib>
 #include <Windows.h>
 
-/*
-тип_возврата имя_функции(аргументы)
-{
-	Тело
-}
-*/
+// к кальклятору
 
+//float Plus(float num1, float num2)
+//{
+//	return num1 + num2;
+//}
+//float Minus(float num1, float num2)
+//{
+//	return num1 - num2;
+//}
+//float Del(float num1, float num2)
+//{
+//	return num1 / num2;
+//}
+//float Um(float num1, float num2)
+//{
+//	return num1 * num2;
+//} 
 
-void PrintHelloWorld()
-{
-	std::cout << "Hello world";
-}
 
 
 
@@ -24,7 +31,6 @@ int main()
 	SetConsoleOutputCP(1251);
 	srand(time(NULL));
 
-	PrintHelloWorld();
 
 
 
@@ -34,6 +40,59 @@ int main()
 
 
 
+
+
+
+
+
+
+	/*float num1, num2;
+	int choose;
+	std::cout << "\n\tВведите число 1: ";
+	std::cin >> num1;
+	std::cout << "\n\tВведите число 2: ";
+	std::cin >> num2;
+	while (true)
+	{
+		std::cout << "\n\tВыберите действие(цифру): \n\t1. Плюс \n\t2. Минус \n\t3. Делить \n\t4. Умножить\n\t";
+		std::cin >> choose;
+		if (choose < 1 || choose > 4)
+		{
+			std::cout << "\n\tНорм введи\n\t";
+		}
+		else
+		{
+			break;
+		}
+	}
+	if (choose == 1)
+	{
+		std::cout << "\n\tРезультат: " << Plus(num1, num2);		
+	}
+	else if (choose == 2)
+	{
+		std::cout << "\n\tРезультат: " << Minus(num1, num2);
+	}
+	else if (choose == 3)
+	{
+		while (true)
+		{
+			if (num2 == 0)
+			{
+				std::cout << "\n\tВторое число не должно быть 0, введи другое значение: \n\t";
+				std::cin >> num2;
+			}
+			else
+			{
+				break;
+			}
+		}
+		std::cout << "\n\tРезультат: " << Del(num1, num2);
+	}
+	else if (choose == 4)
+	{
+		std::cout << "\n\tРезультат: " << Um(num1, num2);
+	}*/
 
 	/*int arr[3][5]; int summ = 0; int kolonki = 0, stroki = 0, pop = 0;
 	std::cout << "\n\n\n";
