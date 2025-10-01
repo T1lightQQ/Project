@@ -22,6 +22,8 @@
 //} 
 
 
+//void pechat(int arr1[], int arr2[], int size);
+//void change(int arr1[], int arr2[], int size);
 
 
 int main()
@@ -40,11 +42,14 @@ int main()
 
 
 
+	/*int const size = 5;
+	int arr1[size]{1, 2, 3, 4, 5}, arr2[size]{5, 4, 3, 2, 1};
 
-
-
-
-
+	std::cout << "\n\tÌàññèâ ÄÎ: \n\t";
+	pechat(arr1, arr2, size);
+	std::cout << "\n\tÌàññèâ ÏÎÑËÅ: \n\t";
+	change(arr1, arr2, size);
+	pechat(arr1, arr2, size);*/
 
 	/*float num1, num2;
 	int choose;
@@ -309,3 +314,27 @@ int main()
 	}*/
 	return 0;
 }
+
+//void pechat(int arr1[], int arr2[], int const size)
+//{
+//	for (int i = 0; i < size; i++)
+//	{
+//		std::cout << arr1[i] << " ";
+//	}
+//	std::cout << "\n\t";
+//	for (int i = 0; i < size; i++)
+//	{
+//		std::cout << arr2[i] << " ";
+//	}
+//}
+//
+//void change(int arr1[], int arr2[], int size)
+//{
+//	int Temp;
+//	for (int i = 0; i < size; i++)
+//	{
+//		Temp = arr1[i];
+//		arr1[i] = arr2[i];
+//		arr2[i] = Temp;
+//	}
+//}
