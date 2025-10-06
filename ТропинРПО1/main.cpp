@@ -1,8 +1,9 @@
 #include <iostream>
 #include <cstdlib>
 #include <Windows.h>
+#include <iomanip>
+#include <cmath>
 
-// к кальклятору
 
 //float Plus(float num1, float num2)
 //{
@@ -25,6 +26,26 @@
 //void pechat(int arr1[], int arr2[], int size);
 //void change(int arr1[], int arr2[], int size);
 
+//void PrintArray(int mass1[]);
+//
+//void PrintArray(char mass2[]);
+//
+//void PrintArray(bool mass3[]);
+//
+//void SetArray(int mass1[]);
+//
+//void SetArray(char mass2[]);
+//
+//void SetArray(bool mass3[]);
+
+template<typename T, typename L>
+L Sum(T first, L second)
+{
+	return (L)(first + second);
+}
+
+
+
 
 int main()
 {
@@ -32,15 +53,18 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	srand(time(NULL));
+	
+	std::cout << Sum(4, 5.4);
 
 
+	/*int mass1[5]{};
+	SetArray(mass1);
 
+	char mass2[5]{};
+	SetArray(mass2);
 
-
-
-
-
-
+	bool mass3[5]{};
+	SetArray(mass3);*/
 
 	/*int const size = 5;
 	int arr1[size]{1, 2, 3, 4, 5}, arr2[size]{5, 4, 3, 2, 1};
@@ -337,4 +361,59 @@ int main()
 //		arr1[i] = arr2[i];
 //		arr2[i] = Temp;
 //	}
+//}
+
+//void PrintArray(int mass1[])
+//{
+//	for (int i = 0; i < 5; i++)
+//	{
+//		std::cout << mass1[i] << " ";
+//	}
+//	std::cout << "\n";
+//}
+//void PrintArray(char mass2[])
+//{
+//	for (int i = 0; i < 5; i++)
+//	{
+//		std::cout << mass2[i] << " ";
+//	}
+//	std::cout << "\n";
+//}
+//void PrintArray(bool mass3[])
+//{
+//	for (int i = 0; i < 5; i++)
+//	{
+//		std::cout << mass3[i] << " ";
+//	}
+//	std::cout << "\n";
+//}
+//
+//
+//
+//
+//void SetArray(int mass1[])
+//{
+//	for (int i = 0; i < 5; i++)
+//	{
+//		mass1[i] = rand() % 10 + 1;
+//	}
+//	PrintArray(mass1);
+//}
+//
+//void SetArray(char mass2[])
+//{
+//	for (int i = 0; i < 5; i++)
+//	{
+//		mass2[i] = rand() % 58+65;
+//	}
+//	PrintArray(mass2);
+//}
+//
+//void SetArray(bool mass3[])
+//{
+//	for (int i = 0; i < 5; i++)
+//	{
+//		mass3[i] = rand() % 2;
+//	}
+//	PrintArray(mass3);
 //}
