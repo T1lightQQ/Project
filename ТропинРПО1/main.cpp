@@ -57,7 +57,7 @@
 //	}
 //}
 
-void ShowMenu(int total);
+void ShowMenu(float total);
 
 float ChooseBuy(int choose, float total);
 float Frukt(int choose, float total);
@@ -65,6 +65,7 @@ float Ovosh(int choose, float total);
 float chai(int choose, float total);
 
 float Discount(float total);
+void FinalBuy(float total, int choose);
 
 
 
@@ -81,6 +82,7 @@ int main()
 
 	ShowMenu(total);
 	total = ChooseBuy(choose, total);
+	FinalBuy(total, choose);
 
 
 
@@ -455,10 +457,11 @@ int main()
 //	PrintArray(mass3);
 //}
 
-void ShowMenu(int total)
+void ShowMenu(float total)
 {
 	std::cout << "\n\tДобропожаловать в каталог" << "\n\t1. Фруктовые"
-		<< "\n\t2. Овощные\n\t3. Чаи\n\t" << "\n\n\tСумма ваших покупок на данный момент: " << total;
+		<< "\n\t2. Овощные\n\t3. Чаи\n\t" << "\n\n\tСумма ваших покупок на данный момент: " << total
+		<< "\n\t4. Завершить покупки, перейти к оплате.";
 }
 
 float ChooseBuy(int choose, float total)
@@ -481,6 +484,11 @@ float ChooseBuy(int choose, float total)
 		{
 			system("cls");
 			total = chai(choose, total);
+		}
+		else if (choose == 4)
+		{
+			system("cls");
+			return total;
 		}
 		else
 		{
@@ -582,8 +590,12 @@ float Ovosh(int choose, float total)
 			if (kf % 4 == 0)
 			{
 				int sale = kf / 4;
+				total = (total + 600 * kf) - 600 * sale;
 			}
-			total = total + 600 * kf;
+			else
+			{
+				total = total + 600 * kf;
+			}
 			std::cout << "\n\tУспешно Добавлено.\n\tСумма ваших покупок на данный момент: " << total << "\n\t";
 			system("pause");
 			system("cls");
@@ -671,4 +683,46 @@ float Discount(float total)
 		return total = total - (total * 0.13);
 	}
 	return total;
+}
+
+void FinalBuy(float total, int choose)
+{
+	while (true)
+	{
+		std::cout << "\n\tСумма к оплате: " << total << " р\n\tОплата картой или наличными?\n\t\n\t1. Картой\n\t2. Наличными\n\t";
+		std::cin >> choose;
+		if (choose == 1)
+		{
+			std::cout << "\n\tПриложите карту\n\t";
+			system("pause");
+			std::cout << "\n\tОплата прошла.";
+			break;
+		}
+		else if (choose == 2)
+		{
+			float money;
+			std::cout << "\n\tВведите кол-во наличных\n\t";
+			std::cin >> money;
+			if (money < total)
+			{
+				while (money < total)
+				{
+					float DopMoney;
+					system("cls");
+					std::cout << "\n\tВам не хватает " << total - money << " р, добавьте еще : \n\t"
+						<< "\n\tСколько хотите добавить?\n\t";
+					std::cin >> DopMoney;
+					money = DopMoney + money;
+				}
+			}
+			std::cout << "\n\tВаша сдача: " << money - total;
+			break;
+		}
+		else
+		{
+			std::cout << "\n\tНорм введи да\n\t";
+			system("pause");
+			system("cls");
+		}
+	}
 }
