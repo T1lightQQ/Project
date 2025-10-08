@@ -22,7 +22,6 @@
 //	return num1 * num2;
 //} 
 
-
 //void pechat(int arr1[], int arr2[], int size);
 //void change(int arr1[], int arr2[], int size);
 
@@ -38,11 +37,34 @@
 //
 //void SetArray(bool mass3[]);
 
-template<typename T, typename L>
-L Sum(T first, L second)
-{
-	return (L)(first + second);
-}
+//template<typename T, typename L>
+//L Sum(T first, L second)
+//{
+//	return (L)(first + second);
+//}
+
+//void umnosh(int num1, int num2, int t, int result)
+//{
+//	if (t == num2)
+//	{
+//		std::cout << "Результат: " << result;
+//	}
+//	else
+//	{
+//		result = result + num1;
+//		t++;
+//		umnosh(num1, num2, t, result);
+//	}
+//}
+
+void ShowMenu(int total);
+
+float ChooseBuy(int choose, float total);
+float Frukt(int choose, float total);
+float Ovosh(int choose, float total);
+float chai(int choose, float total);
+
+float Discount(float total);
 
 
 
@@ -53,9 +75,24 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	srand(time(NULL));
-	
-	std::cout << Sum(4, 5.4);
 
+	int choose = 0;
+	float total = 0;
+
+	ShowMenu(total);
+	total = ChooseBuy(choose, total);
+
+
+
+
+
+	/*int num1 = 6, num2 = 8;
+	int t = 0, result = 0;
+	std::cout << "Введите первое число: ";
+	std::cin >> num1;
+	std::cout << "Введите второе число: ";
+	std::cin >> num2;
+	umnosh(num1, num2, t, result);*/
 
 	/*int mass1[5]{};
 	SetArray(mass1);
@@ -417,3 +454,221 @@ int main()
 //	}
 //	PrintArray(mass3);
 //}
+
+void ShowMenu(int total)
+{
+	std::cout << "\n\tДобропожаловать в каталог" << "\n\t1. Фруктовые"
+		<< "\n\t2. Овощные\n\t3. Чаи\n\t" << "\n\n\tСумма ваших покупок на данный момент: " << total;
+}
+
+float ChooseBuy(int choose, float total)
+{
+	while (true)
+	{
+		std::cout << "\n\tВыберете категорию:\n\t";
+		std::cin >> choose;
+		if (choose == 1)
+		{
+			system("cls");
+			total = Frukt(choose, total);
+		}
+		else if (choose == 2)
+		{
+			system("cls");
+			total = Ovosh(choose, total);
+		}
+		else if (choose == 3)
+		{
+			system("cls");
+			total = chai(choose, total);
+		}
+		else
+		{
+			std::cout << "\n\tВведите норм категорию да\n\t";
+			system("pause");
+			system("cls");
+			ShowMenu(total);
+		}
+	}
+}
+
+float Frukt(int choose, float total)
+{
+	int kf;
+	system("cls");
+	while (true)
+	{
+		std::cout << "\n\tКатегория фруктовых. Выберете товар:\n\t1. Яблочный - 500р"
+			<< "\n\t2. Апельсиновый - 600р\n\t3. Абрикосовый - 700р"
+			<< "\n\t4. Грушевый - 800р\n\t\n\t5.Выйти, показать меню\n\t"
+			<< "\n\tВсе цены указываются за ЛИТР!!!1!\n\tВведите номер товара:\n\t";
+		std::cin >> choose;
+		if (choose == 1)
+		{
+			std::cout << "\n\tВведите кол-во литров: ";
+			std::cin >> kf;
+			total = total + 500 * kf;
+			std::cout << "\n\tУспешно Добавлено.\n\tСумма ваших покупок на данный момент: " << total << "\n\t";
+			system("pause");
+			system("cls");
+		}
+		else if (choose == 2)
+		{
+			std::cout << "\n\tВведите кол-во литров: ";
+			std::cin >> kf;
+			total = total + 600 * kf;
+			std::cout << "\n\tУспешно Добавлено.\n\tСумма ваших покупок на данный момент: " << total << "\n\t";
+			system("pause");
+			system("cls");
+		}
+		else if (choose == 3)
+		{
+			std::cout << "\n\tВведите кол-во литров: ";
+			std::cin >> kf;
+			total = total + 700 * kf;
+			std::cout << "\n\tУспешно Добавлено.\n\tСумма ваших покупок на данный момент: " << total << "\n\t";
+			system("pause");
+			system("cls");
+		}
+		else if (choose == 4)
+		{
+			std::cout << "\n\tВведите кол-во литров: ";
+			std::cin >> kf;
+			total = total + 800 * kf;
+			std::cout << "\n\tУспешно Добавлено.\n\tСумма ваших покупок на данный момент: " << total << "\n\t";
+			system("pause");
+			system("cls");
+		}
+		else if (choose == 5)
+		{
+			system("cls");
+			ShowMenu(total);
+			return total;
+		}
+		else
+		{
+			std::cout << "\n\tВведите норм товар да\n\t";
+			system("pause");
+			system("cls");
+		}
+	}
+}
+
+float Ovosh(int choose, float total)
+{
+	int kf;
+	system("cls");
+	while (true)
+	{
+		std::cout << "\n\tКатегория Овощных. Выберете товар:\n\t1. Томатный - 500р"
+			<< "\n\t2. Луковый - 600р\n\t3. Огуречный - 700р"
+			<< "\n\t4. Выйти, показать меню\n\t"
+			<< "\n\tВсе цены указываются за ЛИТР!!!1!\n\tВведите номер товара:\n\t";
+		std::cin >> choose;
+		if (choose == 1)
+		{
+			std::cout << "\n\tВведите кол-во литров: ";
+			std::cin >> kf;
+			total = total + 500 * kf;
+			std::cout << "\n\tУспешно Добавлено.\n\tСумма ваших покупок на данный момент: " << total << "\n\t";
+			system("pause");
+			system("cls");
+		}
+		else if (choose == 2)
+		{
+			std::cout << "\n\tВведите кол-во литров: ";
+			std::cin >> kf;
+
+			if (kf % 4 == 0)
+			{
+				int sale = kf / 4;
+			}
+			total = total + 600 * kf;
+			std::cout << "\n\tУспешно Добавлено.\n\tСумма ваших покупок на данный момент: " << total << "\n\t";
+			system("pause");
+			system("cls");
+		}
+		else if (choose == 3)
+		{
+			std::cout << "\n\tВведите кол-во литров: ";
+			std::cin >> kf;
+			total = total + 700 * kf;
+			std::cout << "\n\tУспешно Добавлено.\n\tСумма ваших покупок на данный момент: " << total << "\n\t";
+			system("pause");
+			system("cls");
+		}
+		else if (choose == 4)
+		{	
+			system("cls");
+			ShowMenu(total);
+			return total;
+		}
+		else
+		{
+			std::cout << "\n\tВведите норм товар да\n\t";
+			system("pause");
+			system("cls");
+		}
+	}
+}
+
+float chai(int choose, float total)
+{
+	int kf;
+	bool sale;
+	system("cls");
+	while (true)
+	{
+		std::cout << "\n\tКатегория Чаев. Выберете товар:\n\t1. Чесночный - 500р"
+			<< "\n\t2. Петрушевый - 600р\n\t"
+			<< "\n\t3. Выйти, показать меню\n\t"
+			<< "\n\tВсе цены указываются за ЛИТР!!!1!\n\tВведите номер товара:\n\t";
+		std::cin >> choose;
+		if (choose == 1)
+		{
+			std::cout << "\n\tВведите кол-во литров: ";
+			std::cin >> kf;
+			total = total + 500 * kf;
+			std::cout << "\n\tУспешно Добавлено.\n\tСумма ваших покупок на данный момент: " << total << "\n\t";
+			system("pause");
+			system("cls");
+		}
+		else if (choose == 2)
+		{
+			std::cout << "\n\tВведите кол-во литров: ";
+			std::cin >> kf;
+			if (kf >= 3)
+			{
+				total = (total + 600 * kf) - ((total + 600 * kf) * 0.05);
+			}
+			else
+			{
+				total = (total + 600 * kf);
+			}
+			std::cout << "\n\tУспешно Добавлено.\n\tСумма ваших покупок на данный момент: " << total << "\n\t";
+			system("pause");
+			system("cls");
+		}
+		else if (choose == 3)
+		{
+			system("cls");
+			ShowMenu(total);
+			return total;
+		}
+		else
+		{
+			std::cout << "\n\tВведите норм товар да\n\t";
+			system("pause");
+			system("cls");
+		}
+	}
+}
+
+float Discount(float total)
+{
+	if (total > 1500)
+	{
+		return total = total - (total * 0.13);
+	}
+	return total;
+}
