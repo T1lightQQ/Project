@@ -695,6 +695,7 @@ void FinalBuy(float total, int choose)
 	{
 		while (true)
 		{
+			total = Discount(total);
 			std::cout << "\n\tСумма к оплате: " << total << " р\n\tОплата картой или наличными?\n\t\n\t1. Картой\n\t2. Наличными\n\t";
 			std::cin >> choose;
 			if (choose == 1)
