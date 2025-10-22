@@ -72,7 +72,6 @@ void FinalBuy(float total, int choose);
 */
 
 
-
 //void MakeMore(int *num)
 //{
 //	*num += 2;
@@ -91,15 +90,35 @@ void FinalBuy(float total, int choose);
 //	b = t;
 //}
 
-//void RandomArr(short* arr)
-//{
-//	for (int i = 0; i < 5; i++)
-//	{
-//		*(arr + i) = rand() % 10 + 1;
-//		std::cout << arr + i << "\n";
-//		std::cout << *(arr + i) << "\n";
-//	}
-//}
+void RandomArr(int *data, int &newSize, int &num)
+{
+	for (int i = 0; i < newSize; i++)
+	{
+		data[i] = rand() % 10 + 1;
+		std::cout << data[i] << " ";
+	}
+	std::cout << "\n";
+
+	int* newData = new int[newSize];
+
+	for (int i = 0; i < newSize; i++)
+	{
+		newData[i] = data[i];
+	}
+
+	delete[]data;
+
+	int* data = new int[newSize];
+	newSize++;
+	data[newSize - 1] = num;
+
+	for (int i = 0; i < newSize - 1; i++)
+	{
+		data[i] = newData[i];
+		std::cout << data[i] << " ";
+	}
+	delete[]newData;
+}
 
 
 int main()
@@ -108,8 +127,27 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	srand(time(NULL));
+	
+	
+	int* data;
+	int newSize = 5, num;
+	data = new int[newSize];
+	std::cout << "¬ведите число:\n";
+	std::cin >> num;
 
-	int* data = new int;
+	RandomArr(data, newSize, num);
+
+
+	delete[]data;
+
+
+
+
+
+
+
+
+	/*int* data = new int;
 
 	*data = 100;
 	std::cout << *data << "\n";
@@ -124,16 +162,7 @@ int main()
 	std::cin >> newSize;
 	data = new int[newSize];
 
-	delete[]data;
-
-
-
-
-
-
-
-
-
+	delete[]data;*/
 
 	/*short arr[5]{};
 	RandomArr(arr);*/
