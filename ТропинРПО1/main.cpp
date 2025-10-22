@@ -72,6 +72,7 @@ void FinalBuy(float total, int choose);
 */
 
 
+
 //void MakeMore(int *num)
 //{
 //	*num += 2;
@@ -90,17 +91,15 @@ void FinalBuy(float total, int choose);
 //	b = t;
 //}
 
-
-
-void RandomArr(short* arr)
-{
-	for (int i = 0; i < 5; i++)
-	{
-		*(arr + i) = rand() % 10 + 1;
-		std::cout << arr + i << "\n";
-		std::cout << *(arr + i) << "\n";
-	}
-}
+//void RandomArr(short* arr)
+//{
+//	for (int i = 0; i < 5; i++)
+//	{
+//		*(arr + i) = rand() % 10 + 1;
+//		std::cout << arr + i << "\n";
+//		std::cout << *(arr + i) << "\n";
+//	}
+//}
 
 
 int main()
@@ -110,8 +109,22 @@ int main()
 	SetConsoleOutputCP(1251);
 	srand(time(NULL));
 
-	short arr[5]{};
-	RandomArr(arr);
+	int* data = new int;
+
+	*data = 100;
+	std::cout << *data << "\n";
+	delete data;
+
+	data = new int;
+	*data = 1000;
+	std::cout << *data << "\n";
+	delete data;
+
+	int newSize = 0;
+	std::cin >> newSize;
+	data = new int[newSize];
+
+	delete[]data;
 
 
 
@@ -122,7 +135,8 @@ int main()
 
 
 
-
+	/*short arr[5]{};
+	RandomArr(arr);*/
 
 	/*int arr[]{ 1, 2, 3, 4, 5 };
 
