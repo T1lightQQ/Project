@@ -90,7 +90,7 @@ void FinalBuy(float total, int choose);
 //	b = t;
 //}
 
-void RandomArr(int *data, int &newSize, int &num)
+void RandomArr(int *&data, int &newSize, int &num)
 {
 	for (int i = 0; i < newSize; i++)
 	{
@@ -108,13 +108,18 @@ void RandomArr(int *data, int &newSize, int &num)
 
 	delete[]data;
 
-	int* data = new int[newSize];
 	newSize++;
+	data = new int[newSize];
+
 	data[newSize - 1] = num;
 
 	for (int i = 0; i < newSize - 1; i++)
 	{
 		data[i] = newData[i];
+	}
+
+	for (int i = 0; i < newSize; i++)
+	{
 		std::cout << data[i] << " ";
 	}
 	delete[]newData;
@@ -128,10 +133,9 @@ int main()
 	SetConsoleOutputCP(1251);
 	srand(time(NULL));
 	
-	
-	int* data;
 	int newSize = 5, num;
-	data = new int[newSize];
+	int* data = new int[newSize];
+
 	std::cout << "¬ведите число:\n";
 	std::cin >> num;
 
