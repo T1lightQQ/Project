@@ -57,6 +57,9 @@
 //	}
 //}
 
+// Магазин
+/*
+
 void ShowMenu(float total);
 
 float ChooseBuy(int choose, float total);
@@ -66,8 +69,38 @@ float chai(int choose, float total);
 
 float Discount(float total);
 void FinalBuy(float total, int choose);
+*/
 
 
+//void MakeMore(int *num)
+//{
+//	*num += 2;
+//}
+//
+//void MakeM(int &num)
+//{
+//	num += 3;
+//}
+//
+//
+//void MySwap(int &a, int &b)
+//{
+//	int t = a;
+//	a = b;
+//	b = t;
+//}
+
+
+
+void RandomArr(short* arr)
+{
+	for (int i = 0; i < 5; i++)
+	{
+		*(arr + i) = rand() % 10 + 1;
+		std::cout << arr + i << "\n";
+		std::cout << *(arr + i) << "\n";
+	}
+}
 
 
 int main()
@@ -77,15 +110,50 @@ int main()
 	SetConsoleOutputCP(1251);
 	srand(time(NULL));
 
+	short arr[5]{};
+	RandomArr(arr);
+
+
+
+
+
+
+
+
+
+
+
+
+	/*int arr[]{ 1, 2, 3, 4, 5 };
+
+	std::cout << *arr << "\n";
+	std::cout << *(arr + 1) << "\n";*/
+
+	/*int a = 10;
+	int b = 20;
+
+
+	std::cout << a << " " << b << "\n";
+	MySwap(a, b);
+	std::cout << a << " " << b << "\n";*/
+
+	/*
+	std::cout << &a << "\n";
+	std::cout << a << "\n";
+	std::cout << ptr << "\n";
+	std::cout << &ptr << "\n";
+	std::cout << *ptr << "\n";
+	*/
+
+	// Магазин
+	/*
 	int choose = 0;
 	float total = 0;
 
 	ShowMenu(total);
 	total = ChooseBuy(choose, total);
 	FinalBuy(total, choose);
-
-
-
+	*/
 
 
 	/*int num1 = 6, num2 = 8;
@@ -135,7 +203,7 @@ int main()
 	}
 	if (choose == 1)
 	{
-		std::cout << "\n\tРезультат: " << Plus(num1, num2);		
+		std::cout << "\n\tРезультат: " << Plus(num1, num2);
 	}
 	else if (choose == 2)
 	{
@@ -231,14 +299,14 @@ int main()
 	for (int i = 0; i < 6; i++)
 	{
 		summ = summ + massiv[i];
-		
+
 	}
 	std::cout << "\n\tСумма всех будет - " << summ;
 	*/
 
 	/*float rub;
 	int valuta, choose = 1;
-	
+
 	while (true)
 	{
 		if (choose == 1)
@@ -254,7 +322,7 @@ int main()
 				else
 				{
 					std::cout << "Введи норм\n";
-					
+
 				}
 			}
 
@@ -294,8 +362,8 @@ int main()
 			{
 				std::cout << "\n\tНа твои " << rub << " rub можно купить " << (rub - (rub * 0.05)) * 1.78 << " йена";
 			}
-			
-			
+
+
 			while (true)
 			{
 				std::cout << "\n\tПосчитать еще раз?\n\tДа - 1\n\tНет - 2\n\t";
@@ -309,14 +377,14 @@ int main()
 					std::cout << "\n\tнорм введи да";
 				}
 			}
-			
+
 		}
 		else if (choose == 2)
 		{
 			break;
 		}
 	}*/
-	
+
 	/*int a = 0, b = 0;
 	while (b < 8)
 	{
@@ -346,7 +414,7 @@ int main()
 		std::cout << "\n";
 		b++;
 	}*/
-	
+
 	/*float one, two;
 	std::cout << "Введите 1 число\n";
 	std::cin >> one;
@@ -456,6 +524,10 @@ int main()
 //	}
 //	PrintArray(mass3);
 //}
+
+
+/// Магазин
+/*
 
 void ShowMenu(float total)
 {
@@ -610,7 +682,7 @@ float Ovosh(int choose, float total)
 			system("cls");
 		}
 		else if (choose == 4)
-		{	
+		{
 			system("cls");
 			ShowMenu(total);
 			return total;
@@ -695,7 +767,8 @@ void FinalBuy(float total, int choose)
 	{
 		while (true)
 		{
-			std::cout << "\n\tСумма к оплате: " << total << " р\n\tОплата картой или наличными?\n\t\n\t1. Картой\n\t2. Наличными\n\t";
+			total = Discount(total);
+			std::cout << "\n\tСумма к оплате: " << Discount(total) << " р\n\tОплата картой или наличными?\n\t\n\t1. Картой\n\t2. Наличными\n\t";
 			std::cin >> choose;
 			if (choose == 1)
 			{
@@ -733,3 +806,4 @@ void FinalBuy(float total, int choose)
 		}
 	}
 }
+*/
