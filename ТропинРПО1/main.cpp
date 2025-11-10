@@ -3,7 +3,47 @@
 #include <Windows.h>
 #include <iomanip>
 #include <cmath>
+#include <string>
 
+
+// ----------------Учетки-----------------
+size_t userSize = 2;
+std::string userStatus[3]{ "Супер Администратор", "Администратор", "Сотрудник" };
+std::string* loginArr = new std::string[userSize]{ "login", "login1" };
+std::string* passArr = new std::string[userSize]{ "parol", "parol1" };
+std::string* statusArr = new std::string[userSize]{ userStatus[0], userStatus[2]};
+std::string currentStatus;
+// ---------------------------------------
+
+
+
+// -----------Cклад--------------
+size_t storageSize = 0;
+int* idArr;
+std::string* nameArr;
+unsigned int* countArr;
+double* priceArr;
+
+bool staticStorageCreated = false;
+
+void CreateStorage();
+void ShowStorage();
+
+template<typename T>
+void SwapArr(T* Arr, T* Arr2, size_t SizeArr);
+
+
+
+//-----------Служебки------------
+
+void Start();
+bool Login();
+inline void Getline(std::string& str);
+inline void Err();
+
+void ShowSuperAdminMenu();
+
+// ------------------------------
 
 //float Plus(float num1, float num2)
 //{
@@ -90,40 +130,45 @@ void FinalBuy(float total, int choose);
 //	b = t;
 //}
 
-void RandomArr(int *&data, int &newSize, int &num)
-{
-	for (int i = 0; i < newSize; i++)
-	{
-		data[i] = rand() % 10 + 1;
-		std::cout << data[i] << " ";
-	}
-	std::cout << "\n";
+//void RandomArr(int *&data, int &newSize, int &num)
+//{
+//	for (int i = 0; i < newSize; i++)
+//	{
+//		data[i] = rand() % 10 + 1;
+//		std::cout << data[i] << " ";
+//	}
+//	std::cout << "\n";
+//
+//	int* newData = new int[newSize];
+//
+//	for (int i = 0; i < newSize; i++)
+//	{
+//		newData[i] = data[i];
+//	}
+//
+//	delete[]data;
+//
+//	newSize++;
+//	data = new int[newSize];
+//
+//	data[newSize - 1] = num;
+//
+//	for (int i = 0; i < newSize - 1; i++)
+//	{
+//		data[i] = newData[i];
+//	}
+//
+//	for (int i = 0; i < newSize; i++)
+//	{
+//		std::cout << data[i] << " ";
+//	}
+//	delete[]newData;
+//}
 
-	int* newData = new int[newSize];
 
-	for (int i = 0; i < newSize; i++)
-	{
-		newData[i] = data[i];
-	}
 
-	delete[]data;
 
-	newSize++;
-	data = new int[newSize];
 
-	data[newSize - 1] = num;
-
-	for (int i = 0; i < newSize - 1; i++)
-	{
-		data[i] = newData[i];
-	}
-
-	for (int i = 0; i < newSize; i++)
-	{
-		std::cout << data[i] << " ";
-	}
-	delete[]newData;
-}
 
 
 int main()
@@ -133,7 +178,24 @@ int main()
 	SetConsoleOutputCP(1251);
 	srand(time(NULL));
 	
-	int newSize = 5, num;
+	Start();
+	delete[]loginArr, passArr, statusArr;
+
+	if (staticStorageCreated)
+	{
+		delete[]idArr, nameArr, countArr, priceArr;
+	}
+
+
+
+
+
+
+
+
+
+
+	/*int newSize = 5, num;
 	int* data = new int[newSize];
 
 	std::cout << "Введите число:\n";
@@ -142,14 +204,7 @@ int main()
 	RandomArr(data, newSize, num);
 
 
-	delete[]data;
-
-
-
-
-
-
-
+	delete[]data;*/
 
 	/*int* data = new int;
 
@@ -854,3 +909,162 @@ void FinalBuy(float total, int choose)
 	}
 }
 */
+
+void CreateStorage()
+{
+	const int staticSize = 10;
+	int id[staticSize]{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	std::string name[staticSize]
+	{
+		"RTX 5060", "RTX 5070", "RTX 5080", "RTX 5090 ti",
+		"Iphone 14", "Iphone 15", "Iphone 16",
+		"Xiaomi UltraMegaMaxSuper 3000", "NE Xiaomi NeSuper", "Xiaomi Super 15"
+	};
+	unsigned int count[staticSize]{ 11, 22, 33, 44, 55, 66, 77, 88, 99, 110 };
+	double price[staticSize]{ 30000.5, 60000.5, 100000.5, 300000.5, 50000.5, 80000.5, 90000.5, 22222.5, 500.5, 30000.5 };
+
+	storageSize = staticSize;
+	idArr = new int[storageSize];
+	nameArr = new std::string[storageSize];
+	countArr = new unsigned int[storageSize];
+	priceArr = new double[storageSize];
+	staticStorageCreated = true;
+
+	SwapArr(idArr, id, storageSize);
+	SwapArr(priceArr, price, storageSize);
+	SwapArr(countArr, count, storageSize);
+	SwapArr(nameArr, name, storageSize);
+
+}
+
+void ShowStorage()
+{
+	std::cout << "ID\t" << std::left << std::setw(25) << "Название товара\t\t" <<
+		"Цена\t" << "Кол-во\n";
+
+	for (size_t i = 0; i < storageSize; i++)
+	{
+		std::cout << idArr[i] << "\t" << std::left << std::setw(25) << nameArr[i]
+			<< "\t" << priceArr[i] << "\t" << countArr[i] << "\n";
+	}
+	std::cout << "\n\n";
+}
+
+template<typename T>
+void SwapArr(T *Arr, T *Arr2, size_t SizeArr)
+{
+	for (int i = 0; i < SizeArr; i++)
+	{
+		Arr[i] = Arr2[i];
+	}
+}
+
+
+void Start()
+{
+	std::string choose;
+	std::cout << "\n\n\n\t\t\tТехноШоооб\n\n\n\n\n\n";
+	if (Login())
+	{
+		if (currentStatus == userStatus[0])
+		{
+			while (true)
+			{
+				std::cout << "Выберете склад: \n1. Готовый\n2. Создать новый" << "\nВвод: ";
+				Getline(choose);
+				if (choose == "1")
+				{
+					CreateStorage();
+					/*ShowStorage();
+					system("pause");*/
+					break;
+				}
+				else if (choose == "2")
+				{
+					break;
+				}
+				else
+				{
+					Err();
+				}
+			}
+			
+		}
+		else if (currentStatus == userStatus[1])
+		{
+
+		}
+		else if (currentStatus == userStatus[2])
+		{
+
+		}
+	}
+	else
+	{
+		system("cls");
+		Sleep(1500);
+		std::cout << "\n\tЗавершение работы магазина";
+	}
+}
+
+bool Login()
+{
+	std::string login, pass;
+	while (true)
+	{
+		std::cout << "Введите логин - ";
+		Getline(login);
+		std::cout << "Введите пароль - ";
+		Getline(pass);
+		if (login == "exit" && pass == "exit")
+		{
+			currentStatus = "";
+			return false;
+		}
+		if (login == loginArr[0] && pass == passArr[0])
+		{
+			std::cout << "Пользователь - " << loginArr[0] << "\n\n\tДобро Пожаловать\n";
+			std::cout << "Ваш статус - " << statusArr[0] << "\n\n";
+			currentStatus = statusArr[0];
+			return true;
+		}
+		for (size_t i = 1; i < userSize; i++)
+		{
+			if (login == loginArr[i] && pass == passArr[i])
+			{
+				std::cout << "Пользователь - " << loginArr[i] << "\n\nДобро Пожаловать\n";
+				std::cout << "Ваш статус - " << statusArr[i] << "\n\n";
+				return true;
+			}
+		}
+		Err();
+	}
+	return false;
+}
+
+inline void Getline(std::string& str)
+{
+	std::getline(std::cin, str, '\n');
+}
+
+inline void Err()
+{
+	std::cout << "Некорректный ввод\n";
+	Sleep(1500);
+	system("cls");
+}
+
+void ShowSuperAdminMenu()
+{
+	std::cout << "\n\tSuper MENUUUU";
+	std::string choose;
+	while (true)
+	{
+		system("cls");
+		std::cout << "\n\t1. Начать продажу\n\t2. Показать склад\n\t3. Пополнить склад\n\t4. Списание товара"
+		<< "\n\t5. Изменить цену\n\t6. Редакт. склад\n\t7. Редакт. персонал\n\t8. Отчет о прибыли\n\t9. Закрыть магазин\n\t";
+		std::cout << "Ввод: ";
+		system("cls");
+	}
+}
+
