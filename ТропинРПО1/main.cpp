@@ -27,7 +27,10 @@ double* priceArr;
 bool staticStorageCreated = false;
 
 void CreateStorage();
-void ShowStorage();
+void ShowStorage(int mode = 0);
+void AddStorageItem();
+void RemoveStorageItem();
+void ChangePrice();
 
 template<typename T>
 void SwapArr(T* Arr, T* Arr2, size_t SizeArr);
@@ -40,6 +43,7 @@ void Start();
 bool Login();
 inline void Getline(std::string& str);
 inline void Err();
+bool IsNumber(const std::string& str);
 
 void ShowSuperAdminMenu();
 
@@ -920,7 +924,7 @@ void CreateStorage()
 		"Iphone 14", "Iphone 15", "Iphone 16",
 		"Xiaomi UltraMegaMaxSuper 3000", "NE Xiaomi NeSuper", "Xiaomi Super 15"
 	};
-	unsigned int count[staticSize]{ 11, 22, 33, 44, 55, 66, 77, 88, 99, 110 };
+	unsigned int count[staticSize]{ 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
 	double price[staticSize]{ 30000.5, 60000.5, 100000.5, 300000.5, 50000.5, 80000.5, 90000.5, 22222.5, 500.5, 30000.5 };
 
 	storageSize = staticSize;
@@ -937,17 +941,240 @@ void CreateStorage()
 
 }
 
-void ShowStorage()
+void ShowStorage(int mode)
 {
-	std::cout << "ID\t" << std::left << std::setw(25) << "Название товара\t\t" <<
-		"Цена\t" << "Кол-во\n";
-
-	for (size_t i = 0; i < storageSize; i++)
+	system("cls");
+	if (mode == 0)
 	{
-		std::cout << idArr[i] << "\t" << std::left << std::setw(25) << nameArr[i]
-			<< "\t" << priceArr[i] << "\t" << countArr[i] << "\n";
+		std::cout << "ID\t" << std::left << std::setw(25) << "Название товара\t\t" <<
+			"Цена\t" << "Кол-во\n";
+
+		for (size_t i = 0; i < storageSize; i++)
+		{
+			std::cout << idArr[i] << "\t" << std::left << std::setw(25) << nameArr[i]
+				<< "\t" << priceArr[i] << "\t" << countArr[i] << "\n";
+		}
+		system("pause");
+		system("cls");
+	}
+	else if (mode == 1)
+	{
+		std::cout << "ID\t" << std::left << std::setw(25) << "Название товара\t\t" << "Кол-во\n";
+
+		for (size_t i = 0; i < storageSize; i++)
+		{
+			std::cout << idArr[i] << "\t" << std::left << std::setw(25) << nameArr[i]
+				<< "\t" << countArr[i] << "\n";
+		}
+		
+	}
+	else if (mode == 2)
+	{
+		std::cout << "ID\t" << std::left << std::setw(25) << "Название товара\t\t" <<
+			"Цена\n";
+
+		for (size_t i = 0; i < storageSize; i++)
+		{
+			std::cout << idArr[i] << "\t" << std::left << std::setw(25) << nameArr[i]
+				<< "\t" << priceArr[i] << "\n";
+		}
+		
+	}
+	else
+	{
+		std::invalid_argument("StorageMode Error");
 	}
 	std::cout << "\n\n";
+}
+
+void AddStorageItem()
+{
+	std::string chooseId, chooseCount, choose;
+	int id = 0;
+	unsigned int count = 0;
+	while (true)
+	{
+		system("cls");
+		ShowStorage(1);
+
+		std::cout << "\n\tВведите ID товара для его пополнения: ";
+		Getline(chooseId);
+
+		if (chooseId == "exit")
+		{
+			std::cout << "Отмена операции пополнения\n";
+			Sleep(1500);
+			break;
+		}
+
+		std::cout << "\n\tВведите кол-во товара для пополнения: ";
+		Getline(chooseCount);
+
+		if (IsNumber(chooseId) && IsNumber(chooseCount))
+		{
+			id = std::stoi(chooseId) - 1;
+			count = std::stoi(chooseCount);
+
+			if (id < 0 || id > storageSize - 1 || count < 0 || count > 50)
+			{
+				std::cout << "\n\n\tНекорректный ID\n\n";
+				Sleep(1500);
+
+			}
+			else
+			{
+				std::cout << std::left << std::setw(25) << nameArr[id] <<
+					"\t" << countArr[id] << " --> " << countArr[id] + count << "\n\n";
+
+				std::cout << "Подтвердить?\n1. Да\n\t2. НЕТ\nВвод: ";
+				Getline(choose);
+				if (choose == "1")
+				{
+					countArr[id] += count;
+					std::cout << "Товар успешно пополнен\n\n";
+					Sleep(1500);
+					system("cls");
+					break;
+				}
+				else if (choose == "2")
+				{
+					std::cout << "Отмена пополнения товара\n";
+					Sleep(1500);
+				}
+				else
+				{
+					Err();
+				}
+			}
+		}
+	}
+}
+
+void RemoveStorageItem()
+{
+	std::string chooseId, chooseCount, choose;
+	int id = 0;
+	unsigned int count = 0;
+	while (true)
+	{
+		system("cls");
+		ShowStorage(1);
+
+		std::cout << "\n\tВведите ID товара для его списания: ";
+		Getline(chooseId);
+
+		if (chooseId == "exit")
+		{
+			std::cout << "Отмена операции списания\n";
+			Sleep(1500);
+			system("cls");
+			break;
+		}
+
+		std::cout << "\n\tВведите кол-во товара для списания: ";
+		Getline(chooseCount);
+
+		if (IsNumber(chooseId) && IsNumber(chooseCount))
+		{
+			id = std::stoi(chooseId) - 1;
+			count = std::stoi(chooseCount);
+
+			if (id < 0 || id > storageSize - 1 || count < 0 || count > countArr[id])
+			{
+				std::cout << "\n\n\tНекорректный ID\n\n";
+				Sleep(1500);
+
+			}
+			else
+			{
+				std::cout << std::left << std::setw(25) << nameArr[id] <<
+					"\t" << countArr[id] << " --> " << countArr[id] - count << "\n\n";
+
+				std::cout << "Подтвердить?\n1. Да\n\t2. НЕТ\nВвод: ";
+				Getline(choose);
+				if (choose == "1")
+				{
+					countArr[id] -= count;
+					std::cout << "Товар успешно списан\n\n";
+					Sleep(1500);
+					system("cls");
+					break;
+				}
+				else if (choose == "2")
+				{
+					std::cout << "Отмена пополнения товара\n";
+					Sleep(1500);
+				}
+				else
+				{
+					Err();
+				}
+			}
+		}
+	}
+}
+
+void ChangePrice()
+{
+	std::string chooseId, newPrice, choose;
+	int id = 0;
+	double price = 0.0;
+	while (true)
+	{
+		system("cls");
+		ShowStorage(2);
+
+		std::cout << "\n\tВведите ID товара для его смены цены: ";
+		Getline(chooseId);
+
+		if (chooseId == "exit")
+		{
+			std::cout << "Отмена операции смены цены\n";
+			Sleep(1500);
+			break;
+		}
+
+		std::cout << "\n\tВведите новую цену товара: ";
+		Getline(newPrice);
+
+		if (IsNumber(chooseId) && IsNumber(newPrice))
+		{
+			id = std::stoi(chooseId) - 1;
+			price = std::stoi(newPrice);
+
+			if (id < 0 || id > storageSize - 1 || price < 0.0 || price > 700000)
+			{
+				std::cout << "\n\n\tНекорректный ID или цена\n\n";
+				Sleep(1500);
+
+			}
+			else
+			{
+				std::cout << std::left << std::setw(25) << nameArr[id] <<
+					"\t" << priceArr[id] << " --> " << price << "\n\n";
+
+				std::cout << "Подтвердить?\n\t1. Да\n\t2. НЕТ\n\tВвод: ";
+				Getline(choose);
+				if (choose == "1")
+				{
+					priceArr[id] = price;
+					std::cout << "Цена товара успешно изменена\n\n";
+					Sleep(1500);
+					system("cls");
+					break;
+				}
+				else if (choose == "2")
+				{
+					std::cout << "Отмена смены цены товара\n";
+					Sleep(1500);
+				}
+				else
+				{
+					Err();
+				}
+			}
+		}
+	}
 }
 
 template<typename T>
@@ -975,8 +1202,10 @@ void Start()
 				if (choose == "1")
 				{
 					CreateStorage();
-					/*ShowStorage();
-					system("pause");*/
+					system("cls");
+					//ShowStorage();
+					ShowSuperAdminMenu();
+					//system("pause");
 					break;
 				}
 				else if (choose == "2")
@@ -1021,19 +1250,15 @@ bool Login()
 			currentStatus = "";
 			return false;
 		}
-		if (login == loginArr[0] && pass == passArr[0])
-		{
-			std::cout << "Пользователь - " << loginArr[0] << "\n\n\tДобро Пожаловать\n";
-			std::cout << "Ваш статус - " << statusArr[0] << "\n\n";
-			currentStatus = statusArr[0];
-			return true;
-		}
-		for (size_t i = 1; i < userSize; i++)
+
+		for (size_t i = 0; i < userSize; i++)
 		{
 			if (login == loginArr[i] && pass == passArr[i])
 			{
+				system("cls");
 				std::cout << "Пользователь - " << loginArr[i] << "\n\nДобро Пожаловать\n";
 				std::cout << "Ваш статус - " << statusArr[i] << "\n\n";
+				currentStatus = statusArr[i];
 				return true;
 			}
 		}
@@ -1054,6 +1279,27 @@ inline void Err()
 	system("cls");
 }
 
+bool IsNumber(const std::string& str)
+{
+	if (str.size() <= 0 || str.size() >= 10)
+	{
+		std::cout << "\n\tНекорректный ввод";
+		std::cout << "\n\tНекорректная длина числа\n\n";
+		Sleep(1500);
+		return false;
+	}
+	for (size_t i = 0; i < str.size(); i++)
+	{
+		if (!std::isdigit(str[i]))
+		{
+			Err();
+			std::cout << "Не является числом\n\n";
+			return false;
+		}
+		return true;
+	}
+}
+
 void ShowSuperAdminMenu()
 {
 	std::cout << "\n\tSuper MENUUUU";
@@ -1062,9 +1308,50 @@ void ShowSuperAdminMenu()
 	{
 		system("cls");
 		std::cout << "\n\t1. Начать продажу\n\t2. Показать склад\n\t3. Пополнить склад\n\t4. Списание товара"
-		<< "\n\t5. Изменить цену\n\t6. Редакт. склад\n\t7. Редакт. персонал\n\t8. Отчет о прибыли\n\t9. Закрыть магазин\n\t";
+		<< "\n\t5. Изменить цену\n\t6. Редакт. склад\n\t7. Редакт. персонал\n\t8. Отчет о прибыли\n\t9. Закрыть смену\n\t";
 		std::cout << "Ввод: ";
-		system("cls");
+		Getline(choose);
+
+		if (choose == "1")
+		{
+
+		}
+		else if (choose == "2")
+		{
+			ShowStorage();
+		}
+		else if (choose == "3")
+		{
+			AddStorageItem();
+		}
+		else if (choose == "4")
+		{
+			RemoveStorageItem();
+		}
+		else if (choose == "5")
+		{
+			ChangePrice();
+		}
+		else if (choose == "6")
+		{
+
+		}
+		else if (choose == "7")
+		{
+
+		}
+		else if (choose == "8")
+		{
+
+		}
+		else if (choose == "9")
+		{
+
+		}
+		else
+		{
+			Err();
+		}
 	}
 }
 
