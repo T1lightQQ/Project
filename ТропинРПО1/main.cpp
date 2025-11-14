@@ -35,6 +35,9 @@ void ChangePrice();
 template<typename T>
 void SwapArr(T* Arr, T* Arr2, size_t SizeArr);
 
+void ChangeStorage();
+void AddNewItem();
+
 
 
 //-----------Служебки------------
@@ -1177,6 +1180,180 @@ void ChangePrice()
 	}
 }
 
+void ChangeStorage()
+{
+	std::cout << "\n\tChange Storage MENUUUU";
+	std::string choose;
+	while (true)
+	{
+		system("cls");
+		std::cout << "\n\t1. Добавить новый товар\n\t2. Изменить имя товара\n\t3. Удалить товар\n\t4. Выйти из редактора\n\t";
+		std::cout << "Ввод: ";
+		Getline(choose);
+
+		if (choose == "1")
+		{
+			AddNewItem();
+		}
+		else if (choose == "2")
+		{
+
+		}
+		else if (choose == "3")
+		{
+
+		}
+		else if (choose == "4")
+		{
+
+		}
+		else
+		{
+			Err();
+		}
+	}
+}
+
+void AddNewItem()
+{
+	std::string newName, newPrice, newCount, choose;
+	double price = 0.0;
+	unsigned int count = 0;
+	bool exit = true;
+	while (true)
+	{
+		while (true)
+		{
+			system("cls");
+			std::cout << "\tДобавление нового товара\n\tВведите \"exit\" для выхода";
+			std::cout << "\n\tВведите название нового товара: ";
+			Getline(newName);
+			if (newName == "exit")
+			{
+				std::cout << "Операция добавления прервана";
+				Sleep(1500);
+				exit = false;
+				break;
+			}
+
+			if (newName.size() <= 0 || newName.size() >= 100)
+			{
+				std::cout << "Ошибка имени, слишком длинное название";
+				Sleep(1500);
+			}
+			else
+			{
+				break;
+			}
+		}
+		while (exit)
+		{
+			system("cls");
+			std::cout << "\tДобавление нового товара\n\tВведите \"exit\" для выхода";
+			std::cout << "\n\tВведите кол-во нового товара: ";
+			Getline(newCount);
+			if (newName == "exit")
+			{
+				std::cout << "Операция добавления прервана";
+				Sleep(1500);
+				exit = false;
+				break;
+			}
+
+			if (IsNumber(newCount))
+			{
+				count = std::stoi(newCount);
+				if (count > 100)
+				{
+					std::cout << "\n\tСлишком много, не более 100 ед.\n\t";
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+		while (exit)
+		{
+			system("cls");
+			std::cout << "\tДобавление нового товара\n\tВведите \"exit\" для выхода";
+			std::cout << "\n\tВведите цену нового товара: ";
+			Getline(newPrice);
+			if (newName == "exit")
+			{
+				std::cout << "Операция добавления прервана";
+				Sleep(1500);
+				exit = false;
+				break;
+			}
+
+			if (IsNumber(newPrice))
+			{
+				price = std::stoi(newPrice);
+				if (price > 100000000)
+				{
+					std::cout << "\n\tСлишком дорого, не более 1 млн.\n\t";
+					Sleep(1500);
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+
+		system("pause");
+
+		while (exit)
+		{
+			std::cout << "\n\tНовар товар:" << newName << "\n\tЦена: " << price << "\n\tКоличество: " << count;
+			std::cout << "\n\tПодтвердить???\n\t1. ДА\n\t2. НЕТ\n\tВвод: ";
+			Getline(choose);
+			if (choose == "1")
+			{
+				storageSize++;
+
+				int* idArrTemp = new int [storageSize];
+				std::string* nameArrTemp = new std::string[storageSize];
+				unsigned int* countArrTemp = new unsigned int[storageSize];
+				double* priceArrTemp = new double[storageSize];
+
+				SwapArr(idArrTemp, idArr, storageSize - 1);
+				SwapArr(nameArrTemp, nameArr, storageSize - 1);
+				SwapArr(countArrTemp, countArr, storageSize - 1);
+				SwapArr(priceArrTemp, priceArr, storageSize - 1);
+
+				idArrTemp[storageSize - 1] = storageSize;
+				nameArrTemp[storageSize - 1] = newName;
+				countArrTemp[storageSize - 1] = count;
+				priceArrTemp[storageSize - 1] = price;
+
+				std::swap(idArr, idArrTemp);
+				std::swap(nameArr, nameArrTemp);
+				std::swap(countArr, countArrTemp);
+				std::swap(priceArr, priceArrTemp);
+
+				delete[]idArrTemp, nameArrTemp, countArrTemp, priceArrTemp;
+			}
+			else if (choose == "2")
+			{
+				std::cout << "\n\tОтмена";
+				Sleep(1500);
+				system("cls");
+			}
+			else
+			{
+				Err();
+			}
+		}
+
+		if (exit == false)
+		{
+			break;
+		}
+	}
+}
+
 template<typename T>
 void SwapArr(T *Arr, T *Arr2, size_t SizeArr)
 {
@@ -1334,7 +1511,7 @@ void ShowSuperAdminMenu()
 		}
 		else if (choose == "6")
 		{
-
+			ChangeStorage();
 		}
 		else if (choose == "7")
 		{
